@@ -74,16 +74,15 @@ def autoNorm(dataSet):
     return normDataSet, ranges, minVals
 
 
-def datingClassTest():
+def datingClassTest(hoRatio, k):
     returnMat, datingLabels = file2matrix("datingTestSet2.txt")
     normDateSet, ranges, minVals = autoNorm(returnMat)
-    hoRatio = 0.1
     totalLine = normDateSet.shape[0]
     choseLine = int(normDateSet.shape[0] * hoRatio)
     errorCount = 0
     for i in range(choseLine):
         cResult = classify0(normDateSet[i, :], normDateSet[choseLine:totalLine, :], datingLabels[choseLine:totalLine],
-                            3)
+                            k)
         realResult = datingLabels[i]
         print "算法分类结果为：%s， 实际结果为：%s" % (cResult, realResult)
         if cResult != realResult:
@@ -91,4 +90,4 @@ def datingClassTest():
     print "errorCount=%s, 错误率率为：%f" % (errorCount, errorCount/float(choseLine))
 
 
-datingClassTest()
+datingClassTest(0.1, 4)
