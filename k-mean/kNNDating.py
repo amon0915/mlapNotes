@@ -108,6 +108,6 @@ def chosePerson():
     print "cResult = ", cResult
     print choseSet[cResult - 1]
 
-
-# chosePerson();
-showFigure();
+if "__main__" == __name__:
+    chosePerson();
+    showFigure();
