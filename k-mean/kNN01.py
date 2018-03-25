@@ -10,16 +10,7 @@ def createDateset():
     group = array([[1.0, 1.1], [1.0, 1.0], [0, 0], [0, 0.1]])
     labels = ['A', 'A', 'B', 'B']
     return group, labels
-#
-# def runBaseKNN(x, group, label, k):
-#     distList = []
-#     for i in group:
-#         distList.append(sqrt(sum(square(x - i))))
-#     labelSort = []
-#     for i in range(len(k)):
-#         min = 99999
-#         for dist in distList:
-#             if dist < min
+
 
 def classify0(inX, dataSet, labels, k):
     # 获取行列数，第一位是行，第二位是列
@@ -46,7 +37,7 @@ def classify0(inX, dataSet, labels, k):
     # sorted是python内置函数：http://www.runoob.com/python/python-func-sorted.html
     sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(1), reverse=True)
     print "sortedClassCount=", sortedClassCount
-    return sortedClassCount
+    return sortedClassCount[0][0]
 
 group, label = createDateset();
-classify0(array([0.5, 0.6]), group, label, 3)
+print "result=", classify0(array([0.5, 0.6]), group, label, 3)
