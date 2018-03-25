@@ -52,7 +52,8 @@ def classify0(inX, dataSet, labels, k):
     return sortedClassCount[0][0]
 
 
-def showFigure(returnMat, classLabelVector):
+def showFigure():
+    returnMat, classLabelVector = file2matrix("datingTestSet2.txt")
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.scatter(returnMat[:, 0], returnMat[:, 1], 10.0 * array(classLabelVector), 1000.0 * array(classLabelVector))
@@ -90,4 +91,23 @@ def datingClassTest(hoRatio, k):
     print "errorCount=%s, 错误率率为：%f" % (errorCount, errorCount/float(choseLine))
 
 
-datingClassTest(0.1, 4)
+# datingClassTest(0.1, 4)
+
+def chosePerson():
+    choseSet = ['不喜欢','一般般','很喜欢']
+    mile = float(raw_input("飞行里程："))
+    iceCream = float(raw_input("每年吃多少升冰淇淋："))
+    gamePer = float(raw_input("每天游戏时间占比："))
+    returnMat, datingLabels = file2matrix("datingTestSet2.txt")
+    normDateSet, ranges, minVals = autoNorm(returnMat)
+    # 归一化输入数据
+    inputArray = array([mile, gamePer, iceCream])
+    inX = (inputArray - minVals) / ranges
+
+    cResult = classify0(inX, normDateSet, datingLabels, 3);
+    print "cResult = ", cResult
+    print choseSet[cResult - 1]
+
+
+# chosePerson();
+showFigure();
